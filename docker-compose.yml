@@ -17,6 +17,11 @@ services:
     environment:
       - MAPBOX_API_KEY=${MAPBOX_API_KEY}
       - SECRET_KEY=${SECRET_KEY}
+      - ADMIN_USER=${ADMIN_USER} 
+      - ADMIN_FNAME=${ADMIN_FNAME} 
+      - ADMIN_LNAME=${ADMIN_LNAME} 
+      - ADMIN_EMAIL=${ADMIN_EMAIL} 
+      - ADMIN_PW=${ADMIN_PW} 
     volumes:
       - ./config/superset_config.py:/home/superset/superset_config.py
 
