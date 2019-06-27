@@ -21,22 +21,32 @@ RUN mkdir ${SUPERSET_HOME} && \
     apt-get update -y && \
     apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
+        apt-transport-https \
+        apt-utils \
         build-essential \
-        curl \
-        procps \
-        vim \
-        default-libmysqlclient-dev \
-        freetds-bin \
-        freetds-dev \
         libffi-dev \
         libldap2-dev \
         libpq-dev \
+        libsasl2-dev \
+        libxi-dev \
+        default-libmysqlclient-dev \
+        freetds-bin \
+        freetds-dev \
         libsasl2-2 \
         libsasl2-dev \
         libsasl2-modules-gssapi-mit \
-        libssl1.0 && \
-    apt-get clean && \
-    curl https://raw.githubusercontent.com/${SUPERSET_REPO}/${SUPERSET_VERSION}/requirements.txt -o requirements.txt && \
+        libssl1.0
+
+# Install extra useful tool for development
+RUN apt-get install -y \
+        less \
+        redis-tools \
+        curl \
+        procps \
+        vim && \
+    apt-get clean
+
+RUN curl https://raw.githubusercontent.com/${SUPERSET_REPO}/${SUPERSET_VERSION}/requirements.txt -o requirements.txt && \
     pip install -U pip setuptools wheel && \
     pip install -r requirements.txt && \
     rm requirements.txt && \
@@ -47,11 +57,7 @@ RUN mkdir ${SUPERSET_HOME} && \
         /var/lib/apt/lists/* \
         /root/.cache/pip/* \
         /tmp/* \
-        /var/tmp/* \
-        /usr/share/man \
-        /usr/share/doc \
-        /usr/share/doc-base
-
+        /var/tmp/*
 
 # Configure Filesystem
 COPY script/docker-init.sh /superset-init.sh
