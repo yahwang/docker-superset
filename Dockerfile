@@ -50,6 +50,7 @@ RUN curl https://raw.githubusercontent.com/${SUPERSET_REPO}/${SUPERSET_VERSION}/
     pip install -U pip setuptools wheel && \
     pip install -r requirements.txt && \
     rm requirements.txt && \
+    pip install redis==3.2.1 && \
     pip install psycopg2-binary==2.8.3 && \
     pip install gevent==1.4.0 && \     
     pip install superset==${SUPERSET_VERSION} && \
