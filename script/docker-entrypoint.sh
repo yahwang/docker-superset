@@ -11,7 +11,8 @@ fi
 
 gunicorn --bind  0.0.0.0:8088 \
         -k gevent \
-        --workers 2 \
+        --workers 3 \
+        --threads 4 \
         --timeout 60 \
         --limit-request-line 0 \
         --limit-request-field_size 0 \
