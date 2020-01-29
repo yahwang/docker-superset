@@ -1,6 +1,6 @@
 # docker-superset
 
-> Version : 0.28.1
+> Version : 0.35.2
 
 참고 :
 
